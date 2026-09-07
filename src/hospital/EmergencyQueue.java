@@ -6,25 +6,43 @@ public class EmergencyQueue {
     private QueueNode rear;
 
     // Enqueue - Add patient to the queue
-    public void enqueue(Patient patient) {
+    public boolean enqueue(Patient patient) {
+
+        QueueNode current = front;
+
+        // Check whether patient is already waiting in the queue
+        while (current != null) {
+
+            if (current.patient.getPatientId() == patient.getPatientId()) {
+                System.out.println("Patient is already in the emergency queue.");
+                return false;
+            }
+
+            current = current.next;
+        }
 
         QueueNode newNode = new QueueNode(patient);
 
         if (rear == null) {
+
             front = newNode;
             rear = newNode;
+
         } else {
+
             rear.next = newNode;
             rear = newNode;
         }
 
         System.out.println("Patient added to emergency queue.");
+        return true;
     }
 
     // Dequeue - Remove patient from the queue
     public Patient dequeue() {
 
         if (front == null) {
+
             System.out.println("Queue is empty.");
             return null;
         }
@@ -44,6 +62,7 @@ public class EmergencyQueue {
     public void displayQueue() {
 
         if (front == null) {
+
             System.out.println("Queue is empty.");
             return;
         }
