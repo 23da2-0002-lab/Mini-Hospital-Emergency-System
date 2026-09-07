@@ -15,7 +15,21 @@ public class PatientHistory {
     }
 
     // Add visit to this patient's linked list
-    public void addVisit(Visit visit) {
+    public boolean addVisit(Visit visit) {
+
+        VisitNode current = head;
+
+        // Check for duplicate Visit ID
+        while (current != null) {
+
+            if (current.visit.getVisitId() == visit.getVisitId()) {
+
+                System.out.println("Visit ID already exists for this patient.");
+                return false;
+            }
+
+            current = current.next;
+        }
 
         VisitNode newNode = new VisitNode(visit);
 
@@ -25,7 +39,7 @@ public class PatientHistory {
 
         } else {
 
-            VisitNode current = head;
+            current = head;
 
             while (current.next != null) {
                 current = current.next;
@@ -33,6 +47,8 @@ public class PatientHistory {
 
             current.next = newNode;
         }
+
+        return true;
     }
 
     // Search visit in this patient's linked list

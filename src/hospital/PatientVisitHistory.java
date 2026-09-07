@@ -38,9 +38,11 @@ public class PatientVisitHistory {
             head = newNode;
         }
 
-        history.addVisit(visit);
+        boolean added = history.addVisit(visit);
 
-        System.out.println("Visit added successfully.");
+        if (added) {
+            System.out.println("Visit added successfully.");
+        }
     }
 
     // Search a visit for a specific patient
