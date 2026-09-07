@@ -210,7 +210,14 @@ public class HospitalSystem {
                             treatmentDetails
                     );
 
-                    treatmentStack.push(treatment);
+                    if (patientBST.search(treatmentPatientId) == null) {
+
+                        System.out.println("Patient not found. Treatment was not added.");
+
+                    } else {
+
+                        treatmentStack.push(treatment);
+                    }
 
                     break;
 
